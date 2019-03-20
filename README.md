@@ -1,0 +1,1 @@
+This is a simple config options from XML
