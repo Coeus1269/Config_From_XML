@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<person>
+    <age>31</age>
+    <hobbies>
+        <element>Football</element>
+        <element>Swimming</element>
+    </hobbies>
+    <kids>
+        <person>
+            <age>5</age>
+            <isMarried>false</isMarried>
+            <name>Billy</name>
+        </person>
+        <person>
+            <age>3</age>
+            <isMarried>false</isMarried>
+            <name>Milly</name>
+        </person>
+    </kids>
+    <isMarried>true</isMarried>
+    <name>Benjamin Watson</name>
+</person>
