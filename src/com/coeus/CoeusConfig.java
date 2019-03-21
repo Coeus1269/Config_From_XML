@@ -1,4 +1,4 @@
-package com.whatever;
+package com.coeus;
 
 
 import javax.xml.bind.JAXBContext;
