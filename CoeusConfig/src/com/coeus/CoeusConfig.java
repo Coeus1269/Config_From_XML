@@ -9,8 +9,6 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import java.io.File;
-import java.util.List;
-import javax.xml.bind.annotation.XmlElementWrapper;
 
 @XmlRootElement
 public class CoeusConfig
