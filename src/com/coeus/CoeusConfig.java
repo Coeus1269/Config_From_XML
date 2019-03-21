@@ -25,17 +25,13 @@ public class CoeusConfig
     // This class will create the XML file when first ran if it doesn't already exist.
     // TODO: get instance for static class single instance usage
     // TODO: Clone this before save
-
+    // TODO: Add exception logging
+    // TODO: ToString output
 
     // if you add variables to this class, for variable matching between this class and the XML file
     // you can either have the same name in the XML as this class, case sensitive
-    // or add the following annotation to link mismatched spellings
-    @XmlElement(name = "isDeBug")
-    public void setDeBug_bln(boolean deBug_bln)
-        { this.deBug_bln = deBug_bln;      }
+    // or add the @XmlElement(name = "XML Value")  annotation to link mismatched spellings, Example below for isDeBug
 
-    public boolean isDeBug_bln()
-        { return deBug_bln;        }
 
 //    @XmlElementWrapper(name = "ListOfStuff")    // name of the grouping element
 //    @XmlElement(name = "element")               // don't need to change, this basically says for each element...
@@ -43,28 +39,29 @@ public class CoeusConfig
 //    return ListOfStuff;
 //    }
 
+    public CoeusConfig()
+        {
+        LoadData(CheckFileExists());
+        }
 
-    public String getDbServerConn()
-        { return dbServerConn_str;      }
-
-    public void setDbServerConn(String dbServerConn)
-        { this.dbServerConn_str = dbServerConn;        }
 
     public static void main(String[] args)
         {
+        CheckFileExists();
         // SaveConfig2XML();
         LoadData();
-    }
+//        System.out.println("ugh");
+        }
 
-    private static CoeusConfig LoadData()
+    public static CoeusConfig LoadData()
         {
-        File file = new File(ConfigFile_str);
-        JAXBContext jaxbContext = null;
-        if( !file.exists())
-            {
-            SaveConfig2XML();
-            }
+        return LoadData(CheckFileExists());
+        }
 
+    private static CoeusConfig LoadData(File file)
+        {
+
+        JAXBContext jaxbContext = null;
         try
             {
             jaxbContext = JAXBContext.newInstance(CoeusConfig.class);
@@ -113,9 +110,33 @@ public class CoeusConfig
             }
         }
 
-//    @Override
-//    public String ToString();
-//        {
-//        jaxbMarshaller.marshal(CFG_Temp, System.out);
-//        }
+    private static File CheckFileExists()
+        {
+        // Check if the XML exists and creates one if not
+        File file = new File(ConfigFile_str);
+        if( !file.exists())
+            {
+            SaveConfig2XML();
+            }
+
+        return file;
+        }
+
+    /* -------------------------------- Getters & Setters  -------------------------------- */
+
+    public String getDbServerConn()
+        { return dbServerConn_str;      }
+
+    public void setDbServerConn(String dbServerConn)
+        { this.dbServerConn_str = dbServerConn;        }
+
+    @XmlElement(name = "isDeBug")
+    public void setDeBug_bln(boolean deBug_bln)
+        { this.deBug_bln = deBug_bln;      }
+
+    public boolean isDeBug_bln()
+        { return deBug_bln;        }
+
+
+    /* ------------------------------ End Getters & Setters  ------------------------------ */
     }
