@@ -26,3 +26,4 @@ hs_err_pid*
 
 .idea/workspace.xml
 out/production/Config_From_XML/META-INF/
+CoeusConfig.xml
